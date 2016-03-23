@@ -30,6 +30,19 @@ h6 {
     font-weight: 400;
 }
 
+.logo {
+    background: url(../img/logo.png) no-repeat center center;
+    background-size: contain;
+}
+.logoCentro{
+    background-image: url(../img/logoBranco.png);
+    height: 150px;
+}
+
+.logoTopo{
+    width: 100px;
+}
+
 .intro-header {
     padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
     padding-bottom: 50px;
