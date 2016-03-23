@@ -38,6 +38,10 @@ h6 {
     background-image: url(../img/logoSombra.png);
     height: 250px;
 }
+.intro-banner {
+    background: url(../img/intro-bg1.jpg) no-repeat center center;
+    background-size: cover;
+}
 
 .logoTopo{
     width: 100px;
@@ -48,8 +52,8 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/intro-bg1.jpg) no-repeat center center;
-    background-size: cover;
+    position:absolute; top:50px;
+    margin: 0 100px;
 }
 
 .intro-message {
