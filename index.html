@@ -43,20 +43,30 @@
                     console.log($(dest));
                     $('html,body').animate({scrollTop: $(dest).offset().top}, 'slow');
                 });
-                setTimeout(function () {alterarBg();}, 30000);
+                setTimeout(function () {
+                    alterarBg();
+                }, timeOut);
             });
-            
-            function alterarBg(){
-                //Return a random number between 1 and 10:
-                num = Math.floor((Math.random() * 9) + 1);
-                console.log(num);
+            var num = 1;
+            var limite = 9;
+            var timeOut = 10000;
+            function alterarBg() {
                 $(".intro-header")
-                        .animate({opacity: 0}, 'slow', function () {
+                        .animate({opacity: 0.2}, 'slow', function () {
+                            num++;
+                            if(num>limite){
+                                num=1;
+                            }
                             $(this)
                                     .css({'background-image': 'url(img/intro-bg' + num + '.jpg)'})
                                     .animate({opacity: 1});
                         });
-                setTimeout(function () {alterarBg();}, 30000);
+                setTimeout(function () {
+                    alterarBg();
+                }, timeOut);
+            }
+            for(i=1;i<=limite;i++){
+                $('<img/>')[0].src = 'img/intro-bg'+i+'.jpg';
             }
         </script>
     </head>
