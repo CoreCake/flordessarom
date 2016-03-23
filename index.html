@@ -27,7 +27,7 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-        
+
         <!-- jQuery -->
         <script src="js/jquery.js"></script>
 
@@ -43,7 +43,21 @@
                     console.log($(dest));
                     $('html,body').animate({scrollTop: $(dest).offset().top}, 'slow');
                 });
+                setTimeout(function () {alterarBg();}, 30000);
             });
+            
+            function alterarBg(){
+                //Return a random number between 1 and 10:
+                num = Math.floor((Math.random() * 9) + 1);
+                console.log(num);
+                $(".intro-header")
+                        .animate({opacity: 0}, 'slow', function () {
+                            $(this)
+                                    .css({'background-image': 'url(img/intro-bg' + num + '.jpg)'})
+                                    .animate({opacity: 1});
+                        });
+                setTimeout(function () {alterarBg();}, 30000);
+            }
         </script>
     </head>
 
