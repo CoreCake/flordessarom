@@ -20,7 +20,6 @@
         <!-- Custom Fonts -->
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-        <link href="css/full-slider.css" rel="stylesheet">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -44,11 +43,31 @@
                     console.log($(dest));
                     $('html,body').animate({scrollTop: $(dest).offset().top}, 'slow');
                 });
-
-                $('.carousel').carousel({
-                    interval: 5000 //changes the speed
-                })
+                setTimeout(function () {
+                    alterarBg();
+                }, timeOut);
             });
+            var num = 1;
+            var limite = 9;
+            var timeOut = 10000;
+            function alterarBg() {
+                $(".intro-header")
+                        .animate({opacity: 0.2}, 'slow', function () {
+                            num++;
+                            if(num>limite){
+                                num=1;
+                            }
+                            $(this)
+                                    .css({'background-image': 'url(img/intro-bg' + num + '.jpg)'})
+                                    .animate({opacity: 1});
+                        });
+                setTimeout(function () {
+                    alterarBg();
+                }, timeOut);
+            }
+            for(i=1;i<=limite;i++){
+                $('<img/>')[0].src = 'img/intro-bg'+i+'.jpg';
+            }
         </script>
     </head>
 
@@ -89,62 +108,6 @@
 
         <!-- Header -->
         <a name="about" id="about"></a>
-        <div id="myCarousel" class="carousel slide">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
-                <li data-target="#myCarousel" data-slide-to="4"></li>
-                <li data-target="#myCarousel" data-slide-to="5"></li>
-                <li data-target="#myCarousel" data-slide-to="6"></li>
-                <li data-target="#myCarousel" data-slide-to="7"></li>
-                <li data-target="#myCarousel" data-slide-to="8"></li>
-                <li data-target="#myCarousel" data-slide-to="9"></li>
-            </ol>
-
-            <!-- Wrapper for Slides -->
-            <div class="carousel-inner">
-                <div class="item active">
-                    <!-- Set the first background image using inline CSS below. -->
-                    <div class="fill" style="background-image:url('img/intro-bg1.jpg');"></div>
-                </div>
-                <div class="item">
-                    <!-- Set the second background image using inline CSS below. -->
-                    <div class="fill" style="background-image:url('img/intro-bg2.jpg');"></div>
-                </div>
-                <div class="item">
-                    <!-- Set the third background image using inline CSS below. -->
-                    <div class="fill" style="background-image:url('img/intro-bg3.jpg');"></div>
-                </div>
-                <div class="item">
-                    <!-- Set the third background image using inline CSS below. -->
-                    <div class="fill" style="background-image:url('img/intro-bg4.jpg');"></div>
-                </div>
-                <div class="item">
-                    <!-- Set the third background image using inline CSS below. -->
-                    <div class="fill" style="background-image:url('img/intro-bg5.jpg');"></div>
-                </div>
-                <div class="item">
-                    <!-- Set the third background image using inline CSS below. -->
-                    <div class="fill" style="background-image:url('img/intro-bg6.jpg');"></div>
-                </div>
-                <div class="item">
-                    <!-- Set the third background image using inline CSS below. -->
-                    <div class="fill" style="background-image:url('img/intro-bg7.jpg');"></div>
-                </div>
-                <div class="item">
-                    <!-- Set the third background image using inline CSS below. -->
-                    <div class="fill" style="background-image:url('img/intro-bg8.jpg');"></div>
-                </div>
-                <div class="item">
-                    <!-- Set the third background image using inline CSS below. -->
-                    <div class="fill" style="background-image:url('img/intro-bg9.jpg');"></div>
-                </div>
-            </div>
-
-        </div>
         <div class="intro-header">
             <div class="container">
 
