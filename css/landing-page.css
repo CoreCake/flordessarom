@@ -118,7 +118,11 @@ h6 {
 }
 
 .section-heading {
-    margin-bottom: 30px;
+    margin: 10px;
+}
+.section-subheading {
+    margin: 20px;
+    font-size: 1em;
 }
 
 .section-heading-spacer {
