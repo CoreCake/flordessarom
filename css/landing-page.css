@@ -35,13 +35,13 @@ h6 {
     background-size: contain;
 }
 .logoCentro{
-    background-image: url(../img/logoSombra.png);
-    height: 200px;
+    background-image: url(../img/logoCompleta.png);
+    height: 300px;
 }
 
 
 .logoTopo{
-    width: 100px;
+    width: 200px;
 }
 
 .intro-header {
