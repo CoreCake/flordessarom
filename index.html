@@ -34,7 +34,6 @@
 
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
-
         <script>
             $(document).ready(function () {
                 $("a[href^=#]").click(function (e) {
@@ -42,7 +41,7 @@
                     var dest = $(this).attr('href');
                     console.log(dest);
                     console.log($(dest));
-                    $('html,body').animate({scrollTop: $(dest).offset().top - 50}, 'slow');
+                    $('html,body').animate({scrollTop: $(dest).offset().top}, 'slow');
                 });
                 setTimeout(function () {
                     alterarBg();
@@ -51,6 +50,40 @@
                 $('.carousel').carousel({
                     interval: 3000 //changes the speed
                 })
+
+                //$('#myField')[0].checkValidity() // returns true/false
+                $("#mailForm input, #mailForm textarea").keyup(function (t) {
+                    $(t.target).next("span").find("i").removeClass("green");
+                    $(t.target).removeClass("green");
+                    if ($(t.target).val().length > 5) {
+                        console.log(t.target.checkValidity());
+                        if (t.target.checkValidity()) {
+                            $(t.target).next("span").find("i").addClass("green");
+                            $(t.target).addClass("green");
+                        }
+                    }
+                });
+
+                $(document).ready(function () {
+                    $("#mailForm").submit(function (e) {
+                        e.preventDefault(); //prevent default form submit
+                        $('html,body').animate({scrollTop: $('#contato').offset().top}, 'slow');
+                        $('#email-container').slideUp();
+                        $('#loading-container').slideDown();
+                        $.post("email.php", $("#mailForm").serialize())
+                                .done(function (data) {
+                                    $('html,body').animate({scrollTop: $('#contato').offset().top}, 'slow');
+                                    $('#loading-container').slideUp();
+                                    $('#alert-container').slideDown();
+                                    setTimeout(function () {
+                                        $('#email-container').slideDown();
+                                    }, 3000);
+                                    setTimeout(function () {
+                                        $('#alert-container').slideUp();
+                                    }, 10000);
+                                });
+                    });
+                });
             });
             var num = 1;
             var limite = 2;
@@ -101,7 +134,10 @@
                             <a href="#services">Representações</a>
                         </li>
                         <li>
-                            <a href="#contact">Contato</a>
+                            <a href="#contato">Contato</a>
+                        </li>
+                        <li>
+                            <a href="#connect">Conecte-se</a>
                         </li>
                     </ul>
                 </div>
@@ -133,7 +169,7 @@
                                     <a href="mailto:contato@flordesarom.com.br" class="btn btn-default btn-lg"><i class="fa fa-send fa-fw"></i> <span class="network-name">E-mail</span></a>
                                 </li>
                                 <li>
-                                    <a href="tel:71993463338" class="btn btn-default btn-lg"><i class="fa fa-whatsapp fa-fw"></i> <span class="network-name">(71) 99346-3338</span></a>
+                                    <a href="tel:71991300306" class="btn btn-default btn-lg"><i class="fa fa-whatsapp fa-fw"></i> <span class="network-name">(71) 99130-0306</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -212,6 +248,61 @@
             <!-- /.container -->
 
         </div>
+        
+        
+        <!-- Page Content -->
+
+        <a  name="contato" id="contato"></a>
+        <div class="content-section-b">
+            <div class="container">
+                <div class="row" id="loading-container" style="display: none;"></div>
+                <div class="row" id="alert-container" style="display: none;">
+                    <div class="alert alert-success"><strong><span class="glyphicon glyphicon-send"></span> Sua mensagem foi enviada com sucesso!</strong></div>	  
+                </div>
+                <div class="row" id="email-container">
+                    <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                        <hr class="section-heading-spacer">
+                        <div class="clearfix"></div>
+                        <h2 class="section-heading">Entre em contato conosco</h2>
+                        <p class="lead">
+                        <form role="form" action="" method="post" id="mailForm" >
+                            <div class="form-group">
+                                <label for="InputName">Seu Nome</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Digite seu nome" required>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback gray"></i></span></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="InputCompanny">Sua Empresa</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="InputCompanny" id="InputName" placeholder="Razão Social / Nome Fantasia" required>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback gray"></i></span></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="InputEmail">Seu e-mail</label>
+                                <div class="input-group">
+                                    <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Digite seu e-mail" required  >
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback gray"></i></span></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="InputMessage">Mensagem</label>
+                                <div class="input-group">
+                                    <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback gray"></i></span></div>
+                            </div>
+                            <button id="submit" class="btn btn-info pull-right">Enviar</button>
+
+                        </form>
+                    </div>
+                    <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                        <img class="img-responsive" src="img/mailflower.jpg" alt="">
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container--> 
+
+        </div>
         <!-- /.content-section-a 
 
         <div class="content-section-b">
@@ -258,7 +349,7 @@
     </div>-->
         <!-- /.content-section-a -->
 
-        <a  name="contact" id="contact"></a>
+        <a  name="connect" id="connect"></a>
         <div class="banner">
 
             <div class="container">
