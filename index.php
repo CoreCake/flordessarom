@@ -40,9 +40,9 @@ header('Content-type: text/html; charset=ISO-8859-1');
                 $("a[href^=#]").click(function (e) {
                     e.preventDefault();
                     var dest = $(this).attr('href');
-                    console.log(dest);
-                    console.log($(dest));
-                    $('html,body').animate({scrollTop: $(dest).offset().top}, 'slow');
+                    if(dest!="#"){
+                        $('html,body').animate({scrollTop: $(dest).offset().top}, 'slow');
+                    }
                 });
                 setTimeout(function () {
                     alterarBg();
@@ -56,7 +56,7 @@ header('Content-type: text/html; charset=ISO-8859-1');
                 $("#mailForm input, #mailForm textarea").keyup(function (t) {
                     $(t.target).next("span").find("i").removeClass("green");
                     $(t.target).removeClass("green");
-                    if ($(t.target).val().length > 5) {
+                    if ($(t.target).val().length > 0) {
                         console.log(t.target.checkValidity());
                         if (t.target.checkValidity()) {
                             $(t.target).next("span").find("i").addClass("green");
