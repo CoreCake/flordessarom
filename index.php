@@ -270,8 +270,8 @@ header('Content-type: text/html; charset=ISO-8859-1');
             <div class="container">
                 <div class="row" id="loading-container" style="display: none;"></div>
                 <div class="row">
-                    <div class="alert alert-success" id="alert-success" style="display: none;"><strong><span class="glyphicon glyphicon-send"></span> Sua mensagem foi enviada com sucesso!</strong></div>	  
-                    <div class="alert alert-danger" id="alert-error" style="display: none;"><strong><span class="glyphicon glyphicon-send"></span><span id="errorMessage"></span></strong></div>	  
+                    <div class="alert alert-success" id="alert-success" style="display: none;"><strong><span class="glyphicon glyphicon-ok-sign"></span> Sua mensagem foi enviada com sucesso!</strong></div>	  
+                    <div class="alert alert-danger" id="alert-error" style="display: none;"><strong><span class="glyphicon glyphicon-remove-circle"></span><span id="errorMessage"></span></strong></div>	  
                 </div>
                 <div class="row" id="email-container">
                     <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">

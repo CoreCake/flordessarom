@@ -3,7 +3,9 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
-
+.alert{
+    font-size: 1.2em;
+}
 #loading-container {
     background: url(../img/loading.gif) no-repeat center center;
     /*background-size: cover;*/
