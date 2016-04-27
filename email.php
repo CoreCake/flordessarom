@@ -16,9 +16,9 @@ $response = null;
 
 
 $response=json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response=".$_POST["g-recaptcha-response"]."&remoteip=".$_SERVER['REMOTE_ADDR']), true);
-var_dump($response);
+//var_dump($response);
 $errors = array();
-if ($response != null && $response['success']) {
+if ($response == null || !$response['success']) {
 
     $errors['captcha_error'] = 'O codigo digitado esta incorreto';
 } else {
