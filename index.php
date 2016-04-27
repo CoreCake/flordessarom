@@ -77,6 +77,7 @@ header('Content-type: text/html; charset=ISO-8859-1');
                                 if (data.error === 0) {
                                     $('#alert-success').slideDown();
                                     $("#mailForm")[0].reset();
+                                    grecaptcha.reset() 
                                     setTimeout(function () {
                                         $('#email-container').slideDown();
                                     }, 3000);
