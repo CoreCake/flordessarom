@@ -32,7 +32,7 @@ header('Content-type: text/html; charset=ISO-8859-1');
 
         <!-- jQuery -->
         <script src="js/jquery.js"></script>
-
+        <script src='https://www.google.com/recaptcha/api.js'></script>
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
         <script>
@@ -303,14 +303,7 @@ header('Content-type: text/html; charset=ISO-8859-1');
                                     <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback gray"></i></span></div>
                             </div>
-                            <?php
-                            require_once 'securimage/securimage.php';
-                            $options = array(
-                                'input_name' => 'ct_captcha',
-                                'input_text' => 'Digite o texto da imagem: '
-                            );
-                            echo Securimage::getCaptchaHtml($options);
-                            ?>
+                            <div class="g-recaptcha" data-sitekey="6LfPcR4TAAAAABhSWEOtLKYrmHvnK5Fe7zxjDeE8"></div>
                             <button id="submit" class="btn btn-info pull-right">Enviar</button>
 
                         </form>
