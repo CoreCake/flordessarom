@@ -30,99 +30,10 @@ header('Content-type: text/html; charset=ISO-8859-1');
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <!-- jQuery -->
-        <script src="js/jquery.js"></script>
-        <script src='https://www.google.com/recaptcha/api.js'></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $("a[href^=#]").click(function (e) {
-                    e.preventDefault();
-                    var dest = $(this).attr('href');
-                    if(dest!="#"){
-                        $('html,body').animate({scrollTop: $(dest).offset().top}, 'slow');
-                    }
-                });
-                setTimeout(function () {
-                    alterarBg();
-                }, timeOut);
 
-                $('.carousel').carousel({
-                    interval: 3000 //changes the speed
-                })
-
-                //$('#myField')[0].checkValidity() // returns true/false
-                $("#mailForm input, #mailForm textarea").keyup(function (t) {
-                    $(t.target).next("span").find("i").removeClass("green");
-                    $(t.target).removeClass("green");
-                    if ($(t.target).val().length > 0) {
-                        console.log(t.target.checkValidity());
-                        if (t.target.checkValidity()) {
-                            $(t.target).next("span").find("i").addClass("green");
-                            $(t.target).addClass("green");
-                        }
-                    }
-                });
-
-                $("#mailForm").submit(function (e) {
-                    e.preventDefault(); //prevent default form submit
-                    $('html,body').animate({scrollTop: $('#contato').offset().top}, 'slow');
-                    $('#email-container').slideUp();
-                    $('#loading-container').slideDown();
-                    $.post("email.php", $("#mailForm").serialize())
-                            .done(function (data) {
-                                $('html,body').animate({scrollTop: $('#contato').offset().top}, 'slow');
-                                $('#loading-container').slideUp();
-                                if (data.error === 0) {
-                                    $('#alert-success').slideDown();
-                                    $("#mailForm")[0].reset();
-                                    grecaptcha.reset() 
-                                    setTimeout(function () {
-                                        $('#email-container').slideDown();
-                                    }, 3000);
-                                    setTimeout(function () {
-                                        $('#alert-success').slideUp();
-                                    }, 5000);
-                                } else {
-                                    $('#alert-error').slideDown();
-                                    $('#errorMessage').html(data.message);
-                                    $('#email-container').slideDown();
-                                    setTimeout(function () {
-                                        $('#alert-error').slideUp();
-                                    }, 10000);
-                                }
-                            });
-                });
-
-            });
-
-
-            var num = 1;
-            var limite = 2;
-            var timeOut = 10000;
-            function alterarBg() {
-                $(".intro-header")
-                        .animate({opacity: 0.2}, 'slow', function () {
-                            num++;
-                            if (num > limite) {
-                                num = 1;
-                            }
-                            $(this)
-                                    .css({'background-image': 'url(img/intro-bg' + num + '.jpg)'})
-                                    .animate({opacity: 1});
-                        });
-                setTimeout(function () {
-                    alterarBg();
-                }, timeOut);
-            }
-            for (i = 1; i <= limite; i++) {
-                $('<img/>')[0].src = 'img/intro-bg' + i + '.jpg';
-            }
-        </script>
     </head>
 
-    <body>
+    <body  data-spy="scroll" data-target=".navbar">
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
@@ -161,7 +72,7 @@ header('Content-type: text/html; charset=ISO-8859-1');
 
 
         <!-- Header -->
-        <a name="about" id="about"></a>
+        <section id="about">
         <div class="intro-header">
             <div class="container">
 
@@ -193,11 +104,12 @@ header('Content-type: text/html; charset=ISO-8859-1');
             <!-- /.container -->
 
         </div>
+        </section>
         <!-- /.intro-header -->
 
         <!-- Page Content -->
 
-        <a  name="services" id="services"></a>
+        <section id="services">
         <div class="content-section-a">
 
             <div class="container">
@@ -262,10 +174,11 @@ header('Content-type: text/html; charset=ISO-8859-1');
 
         </div>
 
+        </section>
 
         <!-- Page Content -->
 
-        <a  name="contato" id="contato"></a>
+        <section id="contato">
         <div class="content-section-b">
             <div class="container">
                 <div class="row" id="loading-container" style="display: none;"></div>
@@ -318,7 +231,9 @@ header('Content-type: text/html; charset=ISO-8859-1');
             <!-- /.container--> 
 
         </div>
-        <a  name="connect" id="connect"></a>
+        
+        </section>
+        <section id="connect">
         <div class="banner">
 
             <div class="container">
@@ -345,6 +260,7 @@ header('Content-type: text/html; charset=ISO-8859-1');
         </div>
         <!-- /.banner -->
 
+        </section>
         <!-- Footer -->
         <footer>
             <div class="container">
@@ -372,7 +288,97 @@ header('Content-type: text/html; charset=ISO-8859-1');
                 </div>
             </div>
         </footer>
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function () {                
+                $("a[href^=#]").click(function (e) {
+                    e.preventDefault();
+                    var dest = $(this).attr('href');
+                    if (dest != "#") {
+                        $('html,body').animate({scrollTop: $(dest).offset().top}, 'slow');
+                    }
+                });
+                /**/
+                setTimeout(function () {
+                    alterarBg();
+                }, timeOut);
 
+                $('.carousel').carousel({
+                    interval: 3000 //changes the speed
+                })
+
+                //$('#myField')[0].checkValidity() // returns true/false
+                $("#mailForm input, #mailForm textarea").keyup(function (t) {
+                    $(t.target).next("span").find("i").removeClass("green");
+                    $(t.target).removeClass("green");
+                    if ($(t.target).val().length > 0) {
+                        console.log(t.target.checkValidity());
+                        if (t.target.checkValidity()) {
+                            $(t.target).next("span").find("i").addClass("green");
+                            $(t.target).addClass("green");
+                        }
+                    }
+                });
+
+                $("#mailForm").submit(function (e) {
+                    e.preventDefault(); //prevent default form submit
+                    $('html,body').animate({scrollTop: $('#contato').offset().top}, 'slow');
+                    $('#email-container').slideUp();
+                    $('#loading-container').slideDown();
+                    $.post("email.php", $("#mailForm").serialize())
+                            .done(function (data) {
+                                $('html,body').animate({scrollTop: $('#contato').offset().top}, 'slow');
+                                $('#loading-container').slideUp();
+                                if (data.error === 0) {
+                                    $('#alert-success').slideDown();
+                                    $("#mailForm")[0].reset();
+                                    grecaptcha.reset()
+                                    setTimeout(function () {
+                                        $('#email-container').slideDown();
+                                    }, 3000);
+                                    setTimeout(function () {
+                                        $('#alert-success').slideUp();
+                                    }, 5000);
+                                } else {
+                                    $('#alert-error').slideDown();
+                                    $('#errorMessage').html(data.message);
+                                    $('#email-container').slideDown();
+                                    setTimeout(function () {
+                                        $('#alert-error').slideUp();
+                                    }, 10000);
+                                }
+                            });
+                });
+
+            });
+
+
+            var num = 1;
+            var limite = 2;
+            var timeOut = 10000;
+            function alterarBg() {
+                $(".intro-header")
+                        .animate({opacity: 0.2}, 'slow', function () {
+                            num++;
+                            if (num > limite) {
+                                num = 1;
+                            }
+                            $(this)
+                                    .css({'background-image': 'url(img/intro-bg' + num + '.jpg)'})
+                                    .animate({opacity: 1});
+                        });
+                setTimeout(function () {
+                    alterarBg();
+                }, timeOut);
+            }
+            for (i = 1; i <= limite; i++) {
+                $('<img/>')[0].src = 'img/intro-bg' + i + '.jpg';
+            }
+        </script>
     </body>
 
 </html>
